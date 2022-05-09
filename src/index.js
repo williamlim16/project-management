@@ -4,11 +4,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import todoReducer from './features/todos';
+
+const store = configureStore({
+  reducer: {
+    todo: todoReducer,
+  },
+});
 
 ReactDOM.render(
   <StrictMode>
     <ColorModeScript />
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </StrictMode>,
   document.getElementById('root')
 );
